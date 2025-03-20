@@ -14,19 +14,23 @@ export class App extends React.Component<{}, State> {
   };
 
   componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener('keyup', this.handleKeyDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
+    document.removeEventListener('keyup', this.handleKeyDown);
   }
 
   render() {
+    const { keyboard } = this.state;
+
+    const condition = keyboard.length;
+
     return (
       <div className="App">
         <p className="App__message">
-          {this.state.keyboard.length
-            ? `The last pressed key is [${this.state.keyboard}]`
+          {condition
+            ? `The last pressed key is [${keyboard}]`
             : 'Nothing was pressed yet'}
         </p>
       </div>
